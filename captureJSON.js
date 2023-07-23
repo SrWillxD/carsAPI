@@ -5,7 +5,7 @@ function captureJSON(filePath){
         const jsonString = fs.readFileSync(filePath, 'utf-8');
         return JSON.parse(jsonString);
     }catch(err){
-        console.error("Erro ao ler o arquivo JSON: ", err);
+        console.error("Error reading JSON file: ", err);
         return null;
     }
 }
