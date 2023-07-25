@@ -27,4 +27,3 @@ function brandWithLessModelsWhitParameters(amount) {
 
     return brandsTiedWithLessModels;
 }
-console.log(brandWithLessModelsWhitParameters(10));
