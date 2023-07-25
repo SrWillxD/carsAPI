@@ -23,3 +23,5 @@ function brandWithLessModels(){
 
     return brandsTiedWithLessModels;
 }
+
+export default brandWithLessModels;

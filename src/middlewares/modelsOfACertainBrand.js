@@ -14,3 +14,5 @@ function modelsOfACertainBrand(brand){
 
     return modelList;
 }
+
+export default modelsOfACertainBrand;

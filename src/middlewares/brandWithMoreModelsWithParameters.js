@@ -27,3 +27,5 @@ function brandWithMoreModelsWhitParameters(amount) {
 
     return brandsTiedWithMoreModels;
 }
+
+export default brandWithMoreModelsWhitParameters;

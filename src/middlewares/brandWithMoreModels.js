@@ -23,3 +23,5 @@ function brandWithMoreModels(){
 
     return brandsTiedWithMoreModels;
 }
+
+export default brandWithMoreModels;
