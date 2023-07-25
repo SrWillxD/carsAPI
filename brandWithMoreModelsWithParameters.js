@@ -10,7 +10,14 @@ function brandWithMoreModelsWhitParameters(amount) {
         modelCount.push([car.brand, car.models.length]);
     });
 
-    modelCount.sort((a, b) => b[1] - a[1]);
+    modelCount.sort((a, b) => {
+        if (b[1] !== a[1]) {
+            return b[1] - a[1];
+        }else{
+            return a[0].localeCompare(b[0]);
+        }
+    
+    });
 
     const brandsTiedWithMoreModels = [];
     
@@ -20,4 +27,3 @@ function brandWithMoreModelsWhitParameters(amount) {
 
     return brandsTiedWithMoreModels;
 }
-console.log(brandWithMoreModelsWhitParameters(10));
