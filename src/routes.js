@@ -3,7 +3,7 @@ const routes = express.Router();
 
 
 import brandWithMoreModels from './middlewares/brandWithMoreModels.js';
-import brandWhitLessModels from './middlewares/brandWithLessModels.js';
+import brandWithLessModels from './middlewares/brandWithLessModels.js';
 import brandWithMoreModelsWithParameters from './middlewares/brandWithMoreModelsWithParameters.js';
 import brandWithLessModelsWithParameters from './middlewares/brandWithLessModelsWithParameters.js';
 import modelsOfACertainBrand from './middlewares/modelsOfACertainBrand.js';
@@ -14,12 +14,18 @@ routes.get('/marcas/maisModelos', async (req, res)=>{
         res.json(result);
     } catch (err) {
         console.error('Error in /marcas/maisModelos route:', err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Internal server error'});
     }
 });
 
-routes.get('/marcas/menosModelos', (req, res)=>{
-    res.json(brandWhitLessModels());
+routes.get('/marcas/menosModelos', async (req, res)=>{
+    try {
+        const result = await brandWithLessModels();
+        res.json(result);
+    } catch (err) {
+        console.error('Error in /marcas/menosModelos', err);
+        res.status(500).json({ error: 'Internal server error'});
+    }
 });
 
 routes.get('/marcas/listaMaisModelos/:amount', (req, res)=>{

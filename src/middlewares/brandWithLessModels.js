@@ -1,8 +1,8 @@
 import captureJSON from "./captureJSON.js";
 
-function brandWithLessModels(){
+async function brandWithLessModels(){
     const filePath = "./car-list.json";
-    const jsonData = captureJSON(filePath);
+    const jsonData = await captureJSON(filePath);
 
     let modelCount = [];
 
