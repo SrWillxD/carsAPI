@@ -1,8 +1,8 @@
 import captureJSON from "./captureJSON.js";
 
-function brandWithMoreModelsWhitParameters(amount) {
+async function brandWithMoreModelsWhitParameters(amount) {
     const filePath = "./car-list.json";
-    const jsonData = captureJSON(filePath);
+    const jsonData = await captureJSON(filePath);
 
     let modelCount = [];
 
@@ -16,11 +16,10 @@ function brandWithMoreModelsWhitParameters(amount) {
         }else{
             return a[0].localeCompare(b[0]);
         }
-    
     });
 
     const brandsTiedWithMoreModels = [];
-    
+
     for (let i = 0; i < amount; i++) {
         brandsTiedWithMoreModels.push(modelCount[i]);
     }
