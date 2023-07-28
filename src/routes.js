@@ -8,8 +8,14 @@ import brandWithMoreModelsWithParameters from './middlewares/brandWithMoreModels
 import brandWithLessModelsWithParameters from './middlewares/brandWithLessModelsWithParameters.js';
 import modelsOfACertainBrand from './middlewares/modelsOfACertainBrand.js';
 
-routes.get('/marcas/maisModelos', (req, res)=>{
-    res.json(brandWithMoreModels());
+routes.get('/marcas/maisModelos', async (req, res)=>{
+    try {
+        const result = await brandWithMoreModels();
+        res.json(result);
+    } catch (err) {
+        console.error('Error in /marcas/maisModelos route:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 routes.get('/marcas/menosModelos', (req, res)=>{
