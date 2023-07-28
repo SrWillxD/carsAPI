@@ -61,14 +61,20 @@ routes.get('/marcas/listaMenosModelos/:amount', async (req, res)=>{
     }
 });
 
-routes.post('/marcas/listaModelos', (req, res)=>{
-    const { nomeMarca } = req.body;
-
-    if(nomeMarca === undefined) {
-        return res.status(400).send("O parâmetro \"nomeMarca\" deve ser fornecido no corpo da requisição. Exemplo: {\"nomeMarca\": \"Marca\"}.");
+routes.post('/marcas/listaModelos', async (req, res)=>{
+    try {
+        const { nomeMarca } = req.body;
+    
+        if(nomeMarca === undefined) {
+            return res.status(400).send("O parâmetro \"nomeMarca\" deve ser fornecido no corpo da requisição. Exemplo: {\"nomeMarca\": \"Marca\"}.");
+        }
+    
+        const result = await modelsOfACertainBrand(nomeMarca);
+        res.json(result);
+    } catch (err) {
+        console.error('Error in /marcas/listaModelos', err);
+        res.status(500).json({ error: 'Internal server error'});
     }
-
-    res.json(modelsOfACertainBrand(nomeMarca));
 });
 
 
