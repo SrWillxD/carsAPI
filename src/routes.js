@@ -44,14 +44,21 @@ routes.get('/marcas/listaMaisModelos/:amount', async (req, res)=>{
     }
 });
 
-routes.get('/marcas/listaMenosModelos/:amount', (req, res)=>{
-    const amount = parseInt(req.params.amount);
-
-    if (isNaN(amount) || !Number.isInteger(amount)) {
-        return res.status(400).json('O parâmetro deve ser um número inteiro válido.');
+routes.get('/marcas/listaMenosModelos/:amount', async (req, res)=>{
+    try {
+        const amount = parseInt(req.params.amount);
+    
+        if (isNaN(amount) || !Number.isInteger(amount)) {
+            return res.status(400).json('O parâmetro deve ser um número inteiro válido.');
+        }
+    
+        const result = await brandWithLessModelsWithParameters(amount);
+        res.json(result);
+        
+    } catch (error) {
+        console.error('Error in /marcas/listaMenosModelos/:amount', err);
+        res.status(500).json({ error: 'Internal server error'});
     }
-
-    res.json(brandWithLessModelsWithParameters(amount));
 });
 
 routes.post('/marcas/listaModelos', (req, res)=>{

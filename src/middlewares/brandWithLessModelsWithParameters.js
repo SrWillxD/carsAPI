@@ -1,8 +1,8 @@
 import captureJSON from "./captureJSON.js";
 
-function brandWithLessModelsWhitParameters(amount) {
+async function brandWithLessModelsWithParameters(amount) {
     const filePath = "./car-list.json";
-    const jsonData = captureJSON(filePath);
+    const jsonData = await captureJSON(filePath);
 
     let modelCount = [];
 
@@ -16,11 +16,10 @@ function brandWithLessModelsWhitParameters(amount) {
         }else{
             return a[0].localeCompare(b[0]);
         }
-    
     });
 
     const brandsTiedWithLessModels = [];
-    
+
     for (let i = 0; i < amount; i++) {
         brandsTiedWithLessModels.push(modelCount[i]);
     }
@@ -28,4 +27,4 @@ function brandWithLessModelsWhitParameters(amount) {
     return brandsTiedWithLessModels;
 }
 
-export default brandWithLessModelsWhitParameters;
+export default brandWithLessModelsWithParameters;
