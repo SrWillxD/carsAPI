@@ -1,8 +1,8 @@
 import fs from 'fs';
 
-function captureJSON(filePath){
+async function captureJSON(filePath){
     try{
-        const jsonString = fs.readFileSync(filePath, 'utf-8');
+        const jsonString = await fs.promises.readFile(filePath, 'utf-8');
         return JSON.parse(jsonString);
     }catch(err){
         console.error("Error reading JSON file: ", err);
